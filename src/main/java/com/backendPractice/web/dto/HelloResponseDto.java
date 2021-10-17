@@ -1,4 +1,4 @@
-package com.backendPractice.web;
+package com.backendPractice.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
