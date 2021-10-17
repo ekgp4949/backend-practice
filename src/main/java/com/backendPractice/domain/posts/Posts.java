@@ -1,5 +1,6 @@
 package com.backendPractice.domain.posts;
 
+import com.backendPractice.domain.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Builder
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
