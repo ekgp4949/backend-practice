@@ -29,4 +29,9 @@ public class PostsApiController {
     public PostsResponseDto retrieve(@PathVariable Long id) {
         return postsService.findById(id);
     }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public void delete(@PathVariable Long id) {
+        postsService.delete(id);
+    }
 }

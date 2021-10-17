@@ -102,6 +102,9 @@ public class PostsApiControllerTest {
         assertThat(target.getTitle()).isEqualTo(expectedTitle);
         assertThat(target.getContent()).isEqualTo(expectedContent);
 
+        // is modifiedDate changed but not createdDate
+        assertThat(target.getModifiedDate()).isNotEqualTo(target.getCreatedDate());
+
     }
 
     @Test
@@ -136,6 +139,29 @@ public class PostsApiControllerTest {
         assertThat(responseDto.getTitle()).isEqualTo(target.getTitle());
         assertThat(responseDto.getContent()).isEqualTo(target.getContent());
         assertThat(responseDto.getAuthor()).isEqualTo(target.getAuthor());
+    }
+
+    @Test
+    public void deleteTest() {
+        // given
+        String title = "title";
+        String content = "content";
+        postsRepository.save(Posts.builder()
+                .title(title)
+                .content(content)
+                .author("author")
+                .build());
+
+        Posts post = postsRepository.findAll().get(0);
+        Long id = post.getId();
+        String url = "http://localhost:"+port+"/api/v1/posts/"+id;
+
+        // when
+        restTemplate.delete(url);
+
+        // then
+        List<Posts> list = postsRepository.findAll();
+        assertThat(list.size()).isEqualTo(0);
 
     }
 }
