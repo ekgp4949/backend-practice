@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PostsService {
 
@@ -43,5 +46,11 @@ public class PostsService {
         Posts post = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id: "+id));
         postsRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsResponseDto> findAllDesc() {
+        return postsRepository.findAllByOrderByIdDesc()
+                .stream().map(PostsResponseDto::new).collect(Collectors.toList());
     }
 }
