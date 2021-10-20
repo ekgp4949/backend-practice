@@ -1,10 +1,14 @@
-package com.backendPractice.config.auth;
+package com.backendPractice.config.auth.dto;
 
 import com.backendPractice.domain.user.User;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
+@NoArgsConstructor
 @Getter
-public class SessionUser {
+public class SessionUser implements Serializable {
     private String name;
     private String email;
     private String picture;

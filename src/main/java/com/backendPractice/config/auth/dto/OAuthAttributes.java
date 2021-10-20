@@ -1,4 +1,4 @@
-package com.backendPractice.config.auth;
+package com.backendPractice.config.auth.dto;
 
 import com.backendPractice.domain.user.Role;
 import com.backendPractice.domain.user.User;

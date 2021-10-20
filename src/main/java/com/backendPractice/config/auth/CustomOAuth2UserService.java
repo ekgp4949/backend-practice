@@ -1,5 +1,7 @@
 package com.backendPractice.config.auth;
 
+import com.backendPractice.config.auth.dto.OAuthAttributes;
+import com.backendPractice.config.auth.dto.SessionUser;
 import com.backendPractice.domain.user.User;
 import com.backendPractice.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;

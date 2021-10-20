@@ -1,6 +1,6 @@
 package com.backendPractice.web;
 
-import com.backendPractice.config.auth.SessionUser;
+import com.backendPractice.config.auth.dto.SessionUser;
 import com.backendPractice.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -14,17 +14,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
-
+    public String index(Model model, HttpSession session) {
+        SessionUser user = (SessionUser) session.getAttribute("user");
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) {
             model.addAttribute("userName", user.getName());
         }
-        System.out.println("asdadasdasdasdasdasdasd");
         return "index";
     }
 
