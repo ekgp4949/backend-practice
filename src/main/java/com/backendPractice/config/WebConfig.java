@@ -25,6 +25,8 @@ public class WebConfig implements WebMvcConfigurer {
         return new HandlerMethodArgumentResolver() {
             @Override
             public boolean supportsParameter(MethodParameter parameter) {
+                System.out.println(parameter.getParameterType());
+
                 // 파라미터에 붙어있는 어노테이션이 LoginUser 어노테이션인가?
                 boolean isLoginUserAnnotation = parameter.getMethodAnnotation(LoginUser.class) != null;
 

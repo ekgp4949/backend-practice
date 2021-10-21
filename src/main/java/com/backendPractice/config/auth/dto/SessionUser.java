@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@NoArgsConstructor
 @Getter
 public class SessionUser implements Serializable {
     private String name;
