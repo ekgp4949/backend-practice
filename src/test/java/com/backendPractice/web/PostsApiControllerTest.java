@@ -7,6 +7,7 @@ import com.backendPractice.web.dto.PostsSaveRequestDto;
 import com.backendPractice.web.dto.PostsUpdateRequestDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jdk.jfr.ContentType;
 import org.junit.After;
 import org.junit.Before;
@@ -120,7 +121,7 @@ public class PostsApiControllerTest {
         // when
         //ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, httpEntity, Long.class);
         mvc.perform(
-                post(url)
+                put(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(dto)))
                 .andExpect(status().isOk());
@@ -159,7 +160,7 @@ public class PostsApiControllerTest {
         mvc.perform(
                 get(url)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(savedPost)))
+                        .content(new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(savedPost)))
                 .andExpect(status().isOk());
 
         // then
